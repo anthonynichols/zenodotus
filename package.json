@@ -1,0 +1,36 @@
+{
+  "name": "zenodotus",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonynichols/zenodotus.git"
+  },
+  "author": {
+    "name": "Anthony Nichols",
+    "email": "hi@anthonynichols.me"
+  },
+  "contributors": [
+    "Anthony Nichols"
+  ],
+  "keywords": [
+    "database",
+    "datastore",
+    "embedded"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/anthonynichols/zenodotus/issues"
+  },
+  "homepage": "https://github.com/anthonynichols/zenodotus#readme",
+  "devDependencies": {
+    "typescript": "^2.3.2"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "emitDecoratorMetadata": false,
+    "lib": [
+      "esnext"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "target": "esnext"
+  },
+  "compileOnSave": false,
+  "exclude": [
+    "node_modules"
+  ]
+}
