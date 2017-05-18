@@ -15,6 +15,7 @@ import { Store } from "./store";
 
 namespace Executor {
   export interface Task {
+    args: any[];
     execute: () => any;
     store: Store;
   }
@@ -52,7 +53,7 @@ export class Executor {
     }
   }
 
-  queue = queue((task, callback) => {
+  queue = queue((task: Executor.Task, callback) => {
     let newArguments = [];
     let lastArgument = task.arguments[task.arguments.length - 1];
 

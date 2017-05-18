@@ -10,10 +10,10 @@ import _ from "lodash";
 // TODO: Check Bluebird for performance and compatibility
 // import Promise from "bluebird";
 
-import { Document } from "document";
-import { Executor } from "executor";
-import { Persistence } from "persistence";
-import { generateId } from "utils";
+import { Document } from "./document";
+import { Executor } from "./executor";
+import { Persistence } from "./persistence";
+import { generateId } from "./utils";
 
 // -----------------------------------------------------------------------------
 // Types
@@ -126,8 +126,18 @@ export class Store {
   //   });
   // }
 
-  async insert(document) {
+  async insert(data: Document | Document[]) {
 
+
+    try {
+      document = this.prepareForInsertion(data);
+    } catch (error) {
+      throw new Error('Could not insert');
+    }
+
+    return new Promise((resolve, reject) => {
+      this.persistence.persistNewState(document);
+    })
   }
 
   removeFromIndexes(document: any) {
@@ -162,12 +172,14 @@ export class Store {
     return id;
   }
 
-  private prepareForInsertion(data) {
+  private prepareForInsertion(data: Document | Document[]) {
+    let documents: Document[] = [];
+
     if (_.isArray(data)) {
-      let documents = [];
 
       for (let document of data) {
-        documents.push(this.prepareForInsertion(document));
+        // NOTE: This looks like its going to break
+        documents.push(this.prepareForInsertion(document) as Document);
       }
 
       return documents;
@@ -181,8 +193,13 @@ export class Store {
 
     if (this.timestamp && _.isNil(document.createdAt) || _.isNil(document.updatedAt)) {
       let timestamp = new Date();
-
+      document.createdAt = timestamp;
+      document.updatedAt = timestamp;
     }
+
+    Document.validate(document);
+
+    return document;
   }
 
 }
