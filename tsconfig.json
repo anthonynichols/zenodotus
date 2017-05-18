@@ -1,16 +1,20 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
     "emitDecoratorMetadata": false,
     "lib": [
       "esnext"
     ],
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "removeComments": true,
     "target": "esnext"
   },
   "compileOnSave": false,
+  "include": [
+    "src/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
